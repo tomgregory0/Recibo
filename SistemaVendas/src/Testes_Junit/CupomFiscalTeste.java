@@ -1,10 +1,12 @@
 package Testes_Junit;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -32,22 +34,19 @@ public class CupomFiscalTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService produtoService = ServiceFactory.createProdutoService();
 
-	private Cliente cliente01 = new Cliente(1, "Tomzinho Malvadeza", "12");
-	private Grupo grupo01 = new Grupo(1, "Eletrodomestico");
-	private Loja loja02 = new Loja(2, "Loja do malvadeza");
-	private Produto iten01 = new Produto(22, "65567", "Maquina de Lava", grupoService.pesquisarGrupoId(3));
-	private Vendedor vendedor01 = new Vendedor(12, "110519", "Vendedor Tom");
-	private CupomFiscal cupom = new CupomFiscal();
-	
-	
-	private CupomFiscal cupom01 = new CupomFiscal(null,cupom.getValorTotal() , cupom.getEmissao(), loja02, cliente01, vendedor01);
 
-	// ItensCupomFiscal listaItens = new ItensCupomFiscal();
+	Vendedor vendedor = vendedorService.pesquisarVendedorId(3);
+	Cliente cliente = service.pesquisarClienteId(2);
+	Loja loja = lojaService.pesquisarLojaId(3);
+	CupomFiscal cupom33 = cupomService.pesquisarCupomFiscalId(1);
+	
+	CupomFiscal cupom01 = new CupomFiscal(null, 100.0,new Date() , loja, cliente, vendedor);
+	
 
 	@Test
 	public void CupomFiscalCadastroTest() {
+		
 
-		// boolean retorno = cupomService.cadastrarCupomFiscal(cupom01);
 
 		boolean retorno = cupomService.cadastrarCupomFiscal(cupom01);
 
@@ -77,7 +76,7 @@ public class CupomFiscalTeste {
 
 		boolean retorno = cupomService.apagarCupomFiscal(757);
 
-		assertThat(retorno, is(false));
+		assertFalse(retorno);
 		assertThat(cupomService.exibirTodosCuponsFiscais().size(), is(2));
 		assertNull(cupomService.pesquisarCupomFiscalId(757));
 
@@ -116,7 +115,7 @@ public class CupomFiscalTeste {
 
 		List<CupomFiscal> exibir = cupomService.exibirTodosCuponsFiscais();
 
-		assertThat(cupomService.exibirTodosCuponsFiscais().size(), is(1));
+		assertThat(exibir.size(), is(1));
 
 	}
 }
