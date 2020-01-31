@@ -5,31 +5,22 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import br.com.gx2.dao.ClienteDAO;
-import br.com.gx2.dao.DAOFactory;
-import br.com.gx2.dao.LojaDAO;
-import br.com.gx2.entity.Cliente;
 import br.com.gx2.entity.Loja;
-import br.com.gx2.service.ClienteService;
 import br.com.gx2.service.LojaService;
 import br.com.gx2.service.ServiceFactory;
-import br.com.gx2.service.imp.ClienteServiceImp;
-import br.com.gx2.service.imp.LojaServiceImp;
 
 public class LojaTeste {
 
 	private LojaService lojaService = ServiceFactory.createLojaService();
-	private Loja loja01 = new Loja(1, "Loja do Tom");
-	private Loja loja02 = new Loja(2, "Loja do malvadeza");
+	private Loja loja01 = new Loja(1, "Loja do Tomzinho Malvadeza");
+	private Loja loja02 = new Loja(2, "Loja do Malvadeza");
 
 	@Test
-	public void ClienteCadastroTest() {
+	public void LojaCadastroTest() {
 
 		boolean retorno = lojaService.cadastrarLoja(loja01);
 		boolean retorno2 = lojaService.cadastrarLoja(loja02);
@@ -69,7 +60,7 @@ public class LojaTeste {
 	}
 
 	@Test
-	public void PesquisaClienteTest() {
+	public void PesquisaLojaTest() {
 
 		Loja pesquisaLoj = lojaService.pesquisarLojaId(10);
 
@@ -87,11 +78,12 @@ public class LojaTeste {
 	}
 
 	@Test
-	public void ExibirTodosClientesTest() {
+	public void ExibirTodasLojasTest() {
 
 		List<Loja> exibir = lojaService.exibirTodasLojas();
-
-		assertThat(lojaService.exibirTodasLojas().size(), is(4));
+		
+		assertThat(exibir.size(), is(4));
+	//  System.out.println(exibir);
 
 	}
 }
