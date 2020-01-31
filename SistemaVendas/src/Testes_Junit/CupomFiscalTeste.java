@@ -13,9 +13,7 @@ import org.junit.Test;
 
 import br.com.gx2.entity.Cliente;
 import br.com.gx2.entity.CupomFiscal;
-import br.com.gx2.entity.Grupo;
 import br.com.gx2.entity.Loja;
-import br.com.gx2.entity.Produto;
 import br.com.gx2.entity.Vendedor;
 import br.com.gx2.service.ClienteService;
 import br.com.gx2.service.CupomFiscalService;
@@ -34,19 +32,17 @@ public class CupomFiscalTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService produtoService = ServiceFactory.createProdutoService();
 
-
 	Vendedor vendedor = vendedorService.pesquisarVendedorId(3);
 	Cliente cliente = service.pesquisarClienteId(2);
 	Loja loja = lojaService.pesquisarLojaId(3);
 	CupomFiscal cupom33 = cupomService.pesquisarCupomFiscalId(1);
-	
-	CupomFiscal cupom01 = new CupomFiscal(null, 100.0,new Date() , loja, cliente, vendedor);
-	
+
+	Date data = new Date();
+
+	CupomFiscal cupom01 = new CupomFiscal(null, 100.0, data, loja, cliente, vendedor);
 
 	@Test
 	public void CupomFiscalCadastroTest() {
-		
-
 
 		boolean retorno = cupomService.cadastrarCupomFiscal(cupom01);
 
@@ -74,9 +70,15 @@ public class CupomFiscalTeste {
 	@Test
 	public void RemoveCupomFiscalInexistenteTest() {
 
-		boolean retorno = cupomService.apagarCupomFiscal(757);
+		boolean retornoCup = cupomService.apagarCupomFiscal(1);
+		boolean retornoCli = service.apagarCliente(801);
+		boolean retornoVend = vendedorService.apagarVendedor(2 - 535319);
+		boolean retornoApag = lojaService.apagarLoja(4);
 
-		assertFalse(retorno);
+		// assertTrue(retornoCli);
+		// assertTrue(retornoVend);
+		// assertTrue(retornoApag);
+		assertFalse(retornoCup);
 		assertThat(cupomService.exibirTodosCuponsFiscais().size(), is(2));
 		assertNull(cupomService.pesquisarCupomFiscalId(757));
 
