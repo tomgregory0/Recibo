@@ -21,7 +21,7 @@ public class VendedorTeste {
 	private Vendedor vendedor02 = new Vendedor(13, "535319", "Vendedor Jão");
 
 	@Test
-	public void ClienteCadastroTest() {
+	public void VendedorCadastroTest() {
 
 		boolean retorno = vendedorService.cadastrarVendedor(vendedor01);
 		boolean retorno2 = vendedorService.cadastrarVendedor(vendedor02);
@@ -83,7 +83,9 @@ public class VendedorTeste {
 
 		List<Vendedor> exibir = vendedorService.exibirTodosVendedores();
 
-		assertThat(vendedorService.exibirTodosVendedores().size(), is(4));
+		assertThat(exibir.size(), is(4));
+		// System.out.println(exibir);
+
 
 	}
 

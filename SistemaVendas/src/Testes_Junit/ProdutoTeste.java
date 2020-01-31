@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.security.Provider.Service;
 import java.util.List;
 
 import org.junit.Test;
@@ -45,7 +44,7 @@ public class ProdutoTeste {
 	}
 
 	@Test
-	public void RemoveClienteInexistenteTest() {
+	public void RemoveProdutoInexistenteTest() {
 
 		boolean retorno = produtoService.apagarProduto(757);
 
@@ -86,8 +85,7 @@ public class ProdutoTeste {
 
 		List<Produto> exibir = produtoService.exibirTodosProdutos();
 
-		assertThat(produtoService.exibirTodosProdutos().size(), is(4));
-
+		assertThat(exibir.size(), is(4));
+		// System.out.println(exibir);
 	}
 }
-;
