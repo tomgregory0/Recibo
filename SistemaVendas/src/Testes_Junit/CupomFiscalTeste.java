@@ -5,11 +5,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.sql.Date;
-import java.time.DateTimeException;
 import java.util.List;
-
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import org.junit.Test;
 
@@ -36,18 +32,15 @@ public class CupomFiscalTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService produtoService = ServiceFactory.createProdutoService();
 
-	double valorT = 34434;
 	private Cliente cliente01 = new Cliente(1, "Tomzinho Malvadeza", "12");
 	private Grupo grupo01 = new Grupo(1, "Eletrodomestico");
 	private Loja loja02 = new Loja(2, "Loja do malvadeza");
 	private Produto iten01 = new Produto(22, "65567", "Maquina de Lava", grupoService.pesquisarGrupoId(3));
 	private Vendedor vendedor01 = new Vendedor(12, "110519", "Vendedor Tom");
-	private CupomFiscal dataUsu = new CupomFiscal();
-
+	private CupomFiscal cupom = new CupomFiscal();
 	
 	
-	
-	private CupomFiscal cupom01 = new CupomFiscal(null, valorT,dataUsu.getEmissao() , loja02, cliente01, vendedor01);
+	private CupomFiscal cupom01 = new CupomFiscal(null,cupom.getValorTotal() , cupom.getEmissao(), loja02, cliente01, vendedor01);
 
 	// ItensCupomFiscal listaItens = new ItensCupomFiscal();
 
