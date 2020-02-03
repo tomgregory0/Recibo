@@ -35,7 +35,7 @@ public class CupomFiscalTeste {
 	
 	
 	
-	Vendedor vendedor = vendedorService.pesquisarVendedorId();
+	Vendedor vendedor = vendedorService.pesquisarVendedorId(3);
 	Cliente cliente = service.pesquisarClienteId(2);
 	Loja loja = lojaService.pesquisarLojaId(3);
 	CupomFiscal cupom33 = cupomService.pesquisarCupomFiscalId(1);
