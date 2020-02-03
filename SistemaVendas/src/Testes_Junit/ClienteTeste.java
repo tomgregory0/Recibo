@@ -15,34 +15,38 @@ import br.com.gx2.service.ServiceFactory;
 import br.com.gx2.service.imp.ClienteServiceImp;
 
 public class ClienteTeste {
-
+	
+	
 	private ClienteService service = ServiceFactory.createClienteService();
-
+	
+	private int idCli = 1;
+	private String nomeCli = "Tom G.";
+	private String cpf = "88888888888";
+	
+	
+	Cliente cliente01 = new Cliente(idCli, nomeCli, cpf);
+	Cliente cliente02 = new Cliente(idCli, nomeCli, cpf);
+	
 	/*---------------Cria Clientes----------*/
-
-	private Cliente cliente01 = new Cliente(1, "Tom Gregory", "12");
-	private Cliente cliente02 = new Cliente(2, "Tom Rodrigues", "14");
 
 	@Test
 	public void ClienteCadastroTest() {
 
 		/*---------------Executa o teste ----------*/
-
+		
 		boolean retorno = service.cadastrarCliente(cliente01);
 		boolean retorno2 = service.cadastrarCliente(cliente02);
 
 		/*---------------Verificar se o Cadastro retorna True----------*/
-
 		assertTrue(retorno);
-
 	}
 
 	@Test
 	public void RemoverClienteTest() {
-
+				
 		/*---------------Executa o teste ----------*/
 
-		boolean retorno = service.apagarCliente(1);
+		boolean retorno = service.apagarCliente(idCli);
 
 		/*---------------Verificar se Retorna o apagarCliente retorna True----------*/
 
@@ -54,8 +58,7 @@ public class ClienteTeste {
 
 		/*---------------Verificar se Retorna o cliente removido----------*/
 
-		assertNull(service.pesquisarClienteId(1));
-
+		assertNull(service.pesquisarClienteId(idCli));
 	}
 
 	@Test
@@ -63,7 +66,7 @@ public class ClienteTeste {
 
 		/*---------------Executa o teste apagando um cliente inexistente ----------*/
 
-		boolean retorno = service.apagarCliente(757);
+		boolean retorno = service.apagarCliente(idCli);
 
 		/*---------------Verificar se Retorna o apagaCliente  retorna False----------*/
 		assertThat(retorno, is(false));
@@ -74,7 +77,7 @@ public class ClienteTeste {
 
 		/*---------------Pesquisa o cliente inexistente----------*/
 
-		assertNull(service.pesquisarClienteId(757));
+		assertNull(service.pesquisarClienteId(idCli));
 
 	}
 
@@ -98,11 +101,11 @@ public class ClienteTeste {
 		
 		/*---------------Executa a pesquisa do cliente----------*/
 
-		Cliente pesquisaCli = service.pesquisarClienteId(768);
+		Cliente pesquisaCli = service.pesquisarClienteId(idCli);
 
 		/*---------------Verificar se o cliente pesquisado é o ele mesmo ----------*/
 
-		assertThat(pesquisaCli.getCodigoCliente(), is(768));
+		assertThat(pesquisaCli.getCodigoCliente(), is(idCli));
 
 	}
 
@@ -111,7 +114,7 @@ public class ClienteTeste {
 
 		/*---------------Executa a pesquisa do cliente inexistente----------*/
 
-		Cliente pesquisaCli = service.pesquisarClienteId(78);
+		Cliente pesquisaCli = service.pesquisarClienteId(454);
 		
 		/*---------------Verificar se o cliente pesquisado existe-----------*/
 

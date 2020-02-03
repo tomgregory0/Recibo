@@ -16,27 +16,33 @@ import br.com.gx2.service.ServiceFactory;
 public class LojaTeste {
 
 	private LojaService lojaService = ServiceFactory.createLojaService();
-	private Loja loja01 = new Loja(1, "Loja do Tomzinho Malvadeza");
-	private Loja loja02 = new Loja(2, "Loja do Malvadeza");
+	
+	private Integer idLoja01;
+	private Integer idLoja02;
+	private String nomeLoja01 = "Loja do Tomzinho Malvadeza";
+	private String nomeLoja02 = "Loja do Serginho Malvadeza";
+	
+	private Loja loja01 = new Loja(idLoja01,nomeLoja01);
+	private Loja loja02 = new Loja(idLoja02,nomeLoja02);
 
 	@Test
 	public void LojaCadastroTest() {
 
-		boolean retorno = lojaService.cadastrarLoja(loja01);
+		boolean retorno1 = lojaService.cadastrarLoja(loja01);
 		boolean retorno2 = lojaService.cadastrarLoja(loja02);
 
-		assertTrue(retorno);
-
+		assertTrue(retorno1);
+		assertTrue(retorno2);
 	}
 
 	@Test
 	public void RemoverLojaTest() {
 
-		boolean retorno = lojaService.apagarLoja(1);
+		boolean retorno = lojaService.apagarLoja(idLoja01);
 
 		assertTrue(retorno);
 		assertThat(lojaService.exibirTodasLojas().size(), is(2));
-		assertNull(lojaService.pesquisarLojaId(1));
+		assertNull(lojaService.pesquisarLojaId(idLoja01));
 
 	}
 
@@ -53,8 +59,9 @@ public class LojaTeste {
 
 	@Test
 	public void AlterarLojaTest() {
+		Loja alteracaoDeLoja = new Loja(12,"Loja Alterada");
 
-		boolean retorno = lojaService.alterarLoja(loja02);
+		boolean retorno = lojaService.alterarLoja(alteracaoDeLoja);
 
 		assertTrue(retorno);
 	}
@@ -62,10 +69,9 @@ public class LojaTeste {
 	@Test
 	public void PesquisaLojaTest() {
 
-		Loja pesquisaLoj = lojaService.pesquisarLojaId(10);
+		Loja pesquisaLoj = lojaService.pesquisarLojaId(idLoja02);
 
 		assertThat(pesquisaLoj.getCodigoLoja(), is(10));
-
 	}
 
 	@Test

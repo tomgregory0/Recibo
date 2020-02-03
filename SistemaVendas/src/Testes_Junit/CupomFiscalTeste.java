@@ -32,11 +32,23 @@ public class CupomFiscalTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService produtoService = ServiceFactory.createProdutoService();
 
-	Vendedor vendedor = vendedorService.pesquisarVendedorId(3);
+	
+	
+	
+	Vendedor vendedor = vendedorService.pesquisarVendedorId();
 	Cliente cliente = service.pesquisarClienteId(2);
 	Loja loja = lojaService.pesquisarLojaId(3);
 	CupomFiscal cupom33 = cupomService.pesquisarCupomFiscalId(1);
 
+	
+	
+	private int codigoCupom = 14;
+	private int valorTotal = 100;
+	private 
+	
+	
+	
+	
 	Date data = new Date();
 
 	CupomFiscal cupom01 = new CupomFiscal(null, 100.0, data, loja, cliente, vendedor);

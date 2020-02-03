@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import br.com.gx2.entity.Cliente;
+import br.com.gx2.entity.Grupo;
 import br.com.gx2.entity.Produto;
 import br.com.gx2.service.GrupoService;
 import br.com.gx2.service.ProdutoService;
@@ -18,9 +18,20 @@ import br.com.gx2.service.ServiceFactory;
 public class ProdutoTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService produtoService = ServiceFactory.createProdutoService();
-	private Produto iten01 = new Produto(22, "65567", "Maquina de Lava", grupoService.pesquisarGrupoId(3));
 
-	private Produto iten02 = new Produto(23, "65567998", "Ele", grupoService.pesquisarGrupoId(4));
+	private Grupo grupo01 = new Grupo(12, "Descricao");
+
+	private Integer idProduto01 = 12;
+	private Integer idProduto02 = 13;
+
+	private String ncm01 = "23123";
+	private String ncm02 = "76543";
+
+	private String descriProduto01 = "Maquina de lavar";
+	private String descriProduto02 = "Eletro";
+
+	private Produto iten01 = new Produto(idProduto01, ncm01, descriProduto01, grupo01);
+	private Produto iten02 = new Produto(idProduto02, ncm02, descriProduto02, grupo01);
 
 	@Test
 	public void ProdutoCadastroTest() {
@@ -35,11 +46,11 @@ public class ProdutoTeste {
 	@Test
 	public void RemoverProdutoTest() {
 
-		boolean retorno = produtoService.apagarProduto(1);
+		boolean retorno = produtoService.apagarProduto(idProduto01);
 
 		assertTrue(retorno);
 		assertThat(produtoService.exibirTodosProdutos().size(), is(2));
-		assertNull(produtoService.pesquisarProdutoId(1));
+		assertNull(produtoService.pesquisarProdutoId(idProduto01));
 
 	}
 
@@ -56,7 +67,7 @@ public class ProdutoTeste {
 
 	@Test
 	public void AlterarProdutoTest() {
-		Produto produto = new Produto(8, "65567", "Maquina de Lavar", grupoService.pesquisarGrupoId(3));
+		Produto produto = new Produto(8, "65567", "Maquina de Lavar", grupo01);
 		boolean retorno = produtoService.alterarProduto(produto);
 
 		assertTrue(retorno);
@@ -65,9 +76,9 @@ public class ProdutoTeste {
 	@Test
 	public void PesquisaProdutoTest() {
 
-		Produto pesquisaProd = produtoService.pesquisarProdutoId(2);
-		
-		assertThat(pesquisaProd.getCodigoProduto(), is(2));
+		Produto pesquisaProd = produtoService.pesquisarProdutoId(idProduto02);
+
+		assertThat(pesquisaProd.getCodigoProduto(), is(idProduto02));
 
 	}
 

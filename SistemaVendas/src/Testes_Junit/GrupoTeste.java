@@ -9,9 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import br.com.gx2.entity.Cliente;
 import br.com.gx2.entity.Grupo;
-import br.com.gx2.entity.Produto;
 import br.com.gx2.service.GrupoService;
 import br.com.gx2.service.ProdutoService;
 import br.com.gx2.service.ServiceFactory;
@@ -21,24 +19,32 @@ public class GrupoTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService service = ServiceFactory.createProdutoService();
 
+	private Integer idGrupo01 = 1;
+	private Integer idGrupo02 = 1;
+	private Integer idGrupo03 = 1;
+	private String descricao01 = "Eletrodomestico";
+	private String descricao02 = "Roupas";
+	private String descricao03 = "Eletronico";
 	/*---------------Cria grupos----------*/
 
-	private Grupo grupo01 = new Grupo(1, "Eletrodomestico");
-	private Grupo grupo02 = new Grupo(2, "Eletronico");
-	private Grupo grupo03 = new Grupo(3, "Roupas");
+	private Grupo grupo01 = new Grupo(idGrupo01, descricao01);
+	private Grupo grupo02 = new Grupo(idGrupo02, descricao02);
+	private Grupo grupo03 = new Grupo(idGrupo03, descricao03);
 
 	@Test
 	public void GrupoCadastroTest() {
 
 		/*---------------Cadastra os grupos----------*/
 
-		boolean retorno = grupoService.cadastrarGrupo(grupo01);
+		boolean retorno1 = grupoService.cadastrarGrupo(grupo01);
 		boolean retorno2 = grupoService.cadastrarGrupo(grupo02);
 		boolean retorno3 = grupoService.cadastrarGrupo(grupo03);
 
 		/*---------------Verifica se realmente foi cadastrado----------*/
 
-		assertTrue(retorno);
+		assertTrue(retorno1);
+		assertTrue(retorno2);
+		assertTrue(retorno3);
 
 	}
 
@@ -47,7 +53,7 @@ public class GrupoTeste {
 
 		/*---------------Apaga o grupo----------*/
 
-		boolean retorno = grupoService.apagarGrupo(1);
+		boolean retorno = grupoService.apagarGrupo(idGrupo01);
 
 		/*---------------Verifica se realmente foi removido----------*/
 
@@ -59,7 +65,7 @@ public class GrupoTeste {
 
 		/*---------------Pesquisa o grupo inexistente----------*/
 
-		assertNull(grupoService.pesquisarGrupoId(1));
+		assertNull(grupoService.pesquisarGrupoId(idGrupo01));
 
 	}
 
@@ -68,7 +74,7 @@ public class GrupoTeste {
 
 		/*---------------Executa o teste apagando um cliente inexistente ----------*/
 
-		boolean retorno = grupoService.apagarGrupo(2);
+		boolean retorno = grupoService.apagarGrupo(idGrupo01);
 		/*---------------Verificar se Retorna o apagaCliente  retorna False----------*/
 
 		assertThat(retorno, is(false));
@@ -79,7 +85,7 @@ public class GrupoTeste {
 
 		/*---------------Pesquisa o cliente inexistente----------*/
 
-		assertNull(grupoService.pesquisarGrupoId(2));
+		assertNull(grupoService.pesquisarGrupoId(idGrupo01));
 
 	}
 
@@ -91,7 +97,7 @@ public class GrupoTeste {
 
 		/*---------------Executa a alteração do grupo----------*/
 
-		boolean retorno = grupoService.alterarGrupo(grupo);
+		boolean retorno = grupoService.alterarGrupo(grupo02);
 
 		/*---------------Verificar se grupo foi alterado----------*/
 
@@ -102,11 +108,11 @@ public class GrupoTeste {
 	public void PesquisaGrupoTest() {
 		/*---------------Executa a pesquisa do grupo----------*/
 
-		Grupo pesquisaGrup = grupoService.pesquisarGrupoId(3);
+		Grupo pesquisaGrup = grupoService.pesquisarGrupoId(idGrupo02);
 
 		/*---------------Verificar se o cliente pesquisado é o ele mesmo ----------*/
 
-		assertThat(pesquisaGrup.getCodigoGrupo(), is(3));
+		assertThat(pesquisaGrup.getCodigoGrupo(), is(idGrupo02));
 
 	}
 

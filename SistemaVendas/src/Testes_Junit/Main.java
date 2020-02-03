@@ -9,6 +9,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 
-public class main {
+public class Main {
 	
 }
