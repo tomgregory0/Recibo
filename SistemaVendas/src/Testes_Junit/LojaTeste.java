@@ -61,7 +61,7 @@ public class LojaTeste {
 	public void AlterarLojaTest() {
 		Loja alteracaoDeLoja = new Loja(12,"Loja Alterada");
 
-		boolean retorno = lojaService.alterarLoja(alteracaoDeLoja);
+		boolean retorno = lojaService.alterarLoja(loja01);
 
 		assertTrue(retorno);
 	}

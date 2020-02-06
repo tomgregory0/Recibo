@@ -22,6 +22,7 @@ import br.com.gx2.service.LojaService;
 import br.com.gx2.service.ProdutoService;
 import br.com.gx2.service.ServiceFactory;
 import br.com.gx2.service.VendedorService;
+import br.com.gx2.service.imp.LojaServiceImp;
 
 public class CupomFiscalTeste {
 
@@ -32,27 +33,14 @@ public class CupomFiscalTeste {
 	private GrupoService grupoService = ServiceFactory.createGrupoService();
 	private ProdutoService produtoService = ServiceFactory.createProdutoService();
 
-	
-	
-	
-	Vendedor vendedor = vendedorService.pesquisarVendedorId(3);
-	Cliente cliente = service.pesquisarClienteId(2);
-	Loja loja = lojaService.pesquisarLojaId(3);
-	CupomFiscal cupom33 = cupomService.pesquisarCupomFiscalId(1);
-
-	
-	
 	private int codigoCupom = 14;
-	private int valorTotal = 100;
-	private 
+	private double valorTotal = 100;
 	
-	
-	
-	
-	Date data = new Date();
 
-	CupomFiscal cupom01 = new CupomFiscal(null, 100.0, data, loja, cliente, vendedor);
+	CupomFiscal cupom01 = new CupomFiscal(codigoCupom, valorTotal, data,Loja , cliente, vendedor);
 
+	
+	
 	@Test
 	public void CupomFiscalCadastroTest() {
 
